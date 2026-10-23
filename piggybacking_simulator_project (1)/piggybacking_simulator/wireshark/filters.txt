@@ -1,0 +1,14 @@
+# Local TCP socket used by the application
+tcp.port == 50505
+
+# Only TCP packets
+tcp
+
+# TCP handshake
+tcp.flags.syn == 1
+
+# TCP acknowledgements
+tcp.flags.ack == 1
+
+# TCP payload
+tcp.len > 0

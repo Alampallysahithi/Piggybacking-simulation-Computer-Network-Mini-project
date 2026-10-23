@@ -1,0 +1,35 @@
+PACKET TRACER LAB PLAN
+=======================
+
+Topology:
+PC-A ---- Switch ---- Router/R1 ---- Router/R2 ---- Switch ---- PC-B
+
+Suggested addressing:
+PC-A: 192.168.10.10/24, gateway 192.168.10.1
+R1 LAN: 192.168.10.1/24
+R1-R2: 10.0.0.1/30 <-> 10.0.0.2/30
+R2 LAN: 192.168.20.1/24
+PC-B: 192.168.20.10/24, gateway 192.168.20.1
+
+R1:
+interface g0/0
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+interface g0/1
+ ip address 10.0.0.1 255.255.255.252
+ no shutdown
+ip route 192.168.20.0 255.255.255.0 10.0.0.2
+
+R2:
+interface g0/0
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown
+interface g0/1
+ ip address 10.0.0.2 255.255.255.252
+ no shutdown
+ip route 192.168.10.0 255.255.255.0 10.0.0.1
+
+Test:
+PC-A -> ping 192.168.20.10
+
+Use Simulation Mode to observe packets moving through the topology.
